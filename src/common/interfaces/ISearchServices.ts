@@ -12,7 +12,10 @@ export interface ISearchService {
    * @returns
    * @memberof ISearchService
    */
-  search: (search: string, callback: void) => Promise<void>;
+  search: (search: string) => Promise<{
+    search: string;
+    data: { title: string; description: string; link: string; site: string }[];
+  }>;
   /**
    * Get online html search page.
    *
@@ -20,7 +23,7 @@ export interface ISearchService {
    * @returns
    * @memberof ISearchService
    */
-  getSearchPage: (search: string) => Promise<string>;
+  getSearchPage(search: string): Promise<string>;
   /**
    * Format html page to list of readable data.
    *
@@ -28,7 +31,5 @@ export interface ISearchService {
    * @returns
    * @memberof ISearchService
    */
-  format: (
-    page: string
-  ) => { search: string; title: string; description: string; link: string }[];
+  format: (page: string) => { title: string; description: string; link: string; site: string }[];
 }
